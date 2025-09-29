@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <sdf version="1.6">
-  <model name="iris_demo">
+  <model name="livox_mid360_pcl">
     <!-- add lidars -->
     <link name = "lidar_link">
       <pose>0.0 0.0 0.5 0.0 0.0 0.0</pose>
@@ -67,16 +67,11 @@
 		      <samples>20000</samples>
 		      <downsample>1</downsample>
 		      <csv_file_name>mid360-real-centr.csv</csv_file_name>
-          <publish_pointcloud_type>3</publish_pointcloud_type>
+          <publish_pointcloud_type>2</publish_pointcloud_type>
 		      <ros_topic>/livox/lidar</ros_topic>
-          <frameName>base_link</frameName>
+          <frameName>lidar_link</frameName>
         </plugin>
       </sensor>
-
     </link>
-    
-    
-
-
   </model>
 </sdf>
