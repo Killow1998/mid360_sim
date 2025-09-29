@@ -10,21 +10,13 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   sensor_msgs
   std_msgs
-  message_generation
+  livox_ros_driver2
 )
 
 find_package(gazebo REQUIRED)
 find_package(PCL REQUIRED)
 include_directories(${GAZEBO_INCLUDE_DIRS})
-add_message_files(FILES
-    CustomPoint.msg
-    CustomMsg.msg
-  #   Message2.msg
-  )
 
-generate_messages(DEPENDENCIES
-  std_msgs
-)
 #To solve the error which gazebo does not handle the include file well, we must add this line.
 include_directories(/usr/include/)
 
@@ -35,15 +27,16 @@ link_directories(${GAZEBO_LIBRARY_DIRS})
 #link_directories(/home/lfc/proto/lib/)
 
 include_directories(
-         include
-        ${catkin_INCLUDE_DIRS}
-        ${PCL_INCLUDE_DIRS}
+  include
+  ${catkin_INCLUDE_DIRS}
+  ${PCL_INCLUDE_DIRS}
+  ${livox_ros_driver2_INCLUDE_DIRS}
 )
 
 catkin_package(
-        INCLUDE_DIRS include
-        LIBRARIES livox_laser_simulation
-        CATKIN_DEPENDS tf
+  INCLUDE_DIRS include
+  LIBRARIES livox_laser_simulation
+  CATKIN_DEPENDS tf livox_ros_driver2
 )
 
 add_library(livox_laser_simulation SHARED src/livox_points_plugin.cpp src/livox_ode_multiray_shape.cpp)
